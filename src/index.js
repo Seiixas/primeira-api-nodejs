@@ -1,5 +1,5 @@
 const express = require('express');
-const { uuid } = require('uuidv4');
+const { v4 } = require('uuid');
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.get('/projects', (request, response) => {
   
   const results = title
     ? projects.filter(project => project.title.includes(title))
-    : projects.filter;
+    : projects;
 
   return response.json(results);
 });
@@ -20,7 +20,7 @@ app.get('/projects', (request, response) => {
 app.post('/projects', (request, response) => {
   const { title, owner } = request.body;
 
-  const project = { id: uuid(), title, owner };
+  const project = { id: v4(), title, owner };
 
   projects.push(project);
 
